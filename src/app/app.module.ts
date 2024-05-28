@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ModulesModule } from './modules/modules.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { CoreModule } from './core/core.module';
   ],
   imports: [
     BrowserModule,
+    NgbModule,
 
     SharedModule,
     CoreModule,
