@@ -19,7 +19,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "ach",
+      "prefix": "inf",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
