@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IContact } from '../models/contact.model';
 import { IFeature } from '../models/feature.model';
+import { environment } from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactApiService {
-  apiRoot: string = 'https://infosafejiapi.azurewebsites.net';
+  apiRoot: string = environment.apiRoot;
   apiUrl: string;
 
   constructor(
