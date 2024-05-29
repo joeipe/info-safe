@@ -3,13 +3,15 @@ import { ModulesRoutingModule } from './modules-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
+import { ContactModifyComponent } from './contact-modify/contact-modify.component';
 
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    ContactComponent
+    ContactComponent,
+    ContactModifyComponent
   ],
   imports: [
     ModulesRoutingModule,

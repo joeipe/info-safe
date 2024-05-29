@@ -1,2 +1,23 @@
 <h1 class="mt-5">Contact</h1>
-<p class="lead">Todo.</p>
+<p-progressBar mode="indeterminate" [style]="{ height: '6px' }" *ngIf="loading" />
+<p class="lead">
+    <p-table [value]="contacts" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>DoB</th>
+                <th>Select</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-contact>
+            <tr>
+                <td>{{ contact.firstName }}</td>
+                <td>{{ contact.lastName }}</td>
+                <td>{{ contact.doB }}</td>
+                <td><p-button icon="pi pi-user" [rounded]="true" [text]="true" severity="info"
+                        (onClick)="onModifyClick(contact.id)" /></td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p>
