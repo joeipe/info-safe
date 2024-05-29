@@ -8,31 +8,32 @@ import { IFeature } from '../models/feature.model';
   providedIn: 'root'
 })
 export class ContactApiService {
-  apiRoot: string;
+  apiRoot: string = 'https://infosafejiapi.azurewebsites.net';
+  apiUrl: string;
 
   constructor(
     private _http: HttpClient
   ) {
-    this.apiRoot = 'https://infosafejiapi.azurewebsites.net' + '/api/Contact';
+    this.apiUrl = `${this.apiRoot}/api/Contact`;
   }
 
   getContacts(): Observable<IContact[]> {
-    return this._http.get<IContact[]>(`${this.apiRoot}/GetContacts`);
+    return this._http.get<IContact[]>(`${this.apiUrl}/GetContacts`);
   }
 
   getContactById(id: number): Observable<IContact> {
-    return this._http.get<IContact>(`${this.apiRoot}/GetContactById/${id}`);
+    return this._http.get<IContact>(`${this.apiUrl}/GetContactById/${id}`);
   }
 
   getFullContacts(): Observable<IContact[]> {
-    return this._http.get<IContact[]>(`${this.apiRoot}/GetFullContacts`);
+    return this._http.get<IContact[]>(`${this.apiUrl}/GetFullContacts`);
   }
 
   saveContact(value: IContact): Observable<any> {
-    return this._http.post(`${this.apiRoot}/SaveContact`, value);
+    return this._http.post(`${this.apiUrl}/SaveContact`, value);
   }
 
   getFeatureTest(): Observable<IFeature> {
-    return this._http.get<IFeature>(`${this.apiRoot}/GetFeatureTest`);
+    return this._http.get<IFeature>(`${this.apiUrl}/GetFeatureTest`);
   }
 }
