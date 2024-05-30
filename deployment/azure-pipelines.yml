@@ -24,3 +24,17 @@ steps:
     command: 'install'
     workingDir: '$(System.DefaultWorkingDirectory)'
   displayName: 'npm install'
+
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    workingDir: '$(System.DefaultWorkingDirectory)'
+    verbose: false
+    customCommand: 'run build:production'
+  displayName: 'npm build'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
