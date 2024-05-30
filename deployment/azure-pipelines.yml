@@ -53,18 +53,16 @@ stages:
         displayName: "DeployToAppService - Prod"
 
         steps:
-        - script: ls -la
-          displayName: 'What files are in the folder'
-          workingDirectory: $(build.ArtifactStagingDirectory)
-        
         - task: DownloadPipelineArtifact@2
           inputs:
             buildType: 'current'
             artifactName: 'app'
             targetPath: '$(Pipeline.Workspace)'
         
-        - script: echo branch is $(Pipeline.Workspace)
-          displayName: 'SourceBranch'
-        
-        - script: echo branch is $(System.DefaultWorkingDirectory)
-          displayName: 'SourceBranch'
+        - task: AzureWebApp@1
+          inputs:
+            azureSubscription: 'Personal-Sub(57f4859b-8037-4106-ac17-61520b9de19b)'
+            appType: 'webApp'
+            appName: 'infosafe'
+            package: '$(Pipeline.Workspace)/app/info-safe/browser'
+            deploymentMethod: 'auto'
