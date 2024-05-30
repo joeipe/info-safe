@@ -53,3 +53,6 @@ stages:
         displayName: "DeployToAppService - Prod"
 
         steps:
+        - script: ls -la
+          displayName: 'What files are in the folder'
+          workingDirectory: $(build.ArtifactStagingDirectory)
