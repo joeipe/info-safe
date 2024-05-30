@@ -17,8 +17,10 @@ steps:
 
 - script: |
     npm install -g @angular/cli
-    npm install
-    npm run build:production
-  displayName: 'npm install and build'
+  displayName: 'install angular cli'
 
-
+- task: Npm@1
+  inputs:
+    command: 'install'
+    workingDir: '$(System.DefaultWorkingDirectory)'
+  displayName: 'npm install'
