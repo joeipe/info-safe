@@ -4,37 +4,36 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- master
+  - master
 
 pool:
   vmImage: ubuntu-latest
 
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '20.x'
-  displayName: 'Install Node.js'
+  - task: NodeTool@0
+    inputs:
+      versionSpec: "20.x"
+    displayName: "Install Node.js"
 
-- script: |
-    npm install -g @angular/cli
-  displayName: 'install angular cli'
+  - script: |
+      npm install -g @angular/cli
+    displayName: "install angular cli"
 
-- task: Npm@1
-  inputs:
-    command: 'install'
-    workingDir: '$(System.DefaultWorkingDirectory)'
-  displayName: 'npm install'
+  - task: Npm@1
+    inputs:
+      command: "install"
+      workingDir: "$(System.DefaultWorkingDirectory)"
+    displayName: "npm install"
 
-- task: Npm@1
-  inputs:
-    command: 'custom'
-    workingDir: '$(System.DefaultWorkingDirectory)'
-    verbose: false
-    customCommand: 'run build:production'
-  displayName: 'npm build'
+  - task: Npm@1
+    inputs:
+      command: "custom"
+      workingDir: "$(System.DefaultWorkingDirectory)"
+      verbose: false
+      customCommand: "run build:production"
+    displayName: "npm build"
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+      ArtifactName: "drop"
