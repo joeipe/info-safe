@@ -23,6 +23,7 @@ steps:
     inputs:
       command: "install"
       workingDir: "$(System.DefaultWorkingDirectory)"
+      verbose: false
     displayName: "npm install"
 
   - task: Npm@1
@@ -35,5 +36,5 @@ steps:
 
   - task: PublishBuildArtifacts@1
     inputs:
-      PathtoPublish: "$(Build.ArtifactStagingDirectory)"
-      ArtifactName: "drop"
+      ArtifactName: "dist"
+    displayName: "Publish Artifacts"
