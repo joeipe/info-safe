@@ -56,3 +56,15 @@ stages:
         - script: ls -la
           displayName: 'What files are in the folder'
           workingDirectory: $(build.ArtifactStagingDirectory)
+        
+        - task: DownloadPipelineArtifact@2
+          inputs:
+            buildType: 'current'
+            artifactName: 'app'
+            targetPath: '$(Pipeline.Workspace)'
+        
+        - script: echo branch is $(Pipeline.Workspace)
+          displayName: 'SourceBranch'
+        
+        - script: echo branch is $(System.DefaultWorkingDirectory)
+          displayName: 'SourceBranch'
