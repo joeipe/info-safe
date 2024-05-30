@@ -44,3 +44,10 @@ stages:
               PathtoPublish: "dist"
               ArtifactName: "app"
             displayName: "Publish Artifacts"
+
+  - stage: deploy_to_prod
+    dependsOn: Build
+    condition: and(always(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+    jobs:
+      - job: deployToAppService
+        displayName: "DeployToAppService - Prod"
