@@ -9,10 +9,12 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { AppErrorComponent } from './pages/app-error.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AppErrorComponent
   ],
   imports: [
     SharedModule,
