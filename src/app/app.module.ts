@@ -9,6 +9,7 @@ import { AppErrorComponent } from './pages/app-error.component';
 import { BrowserCacheLocation, InteractionType, PublicClientApplication } from '@azure/msal-browser';
 import { MsalGuard, MsalInterceptor, MsalModule, MsalRedirectComponent } from '@azure/msal-angular';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 const isIE =
   window.navigator.userAgent.indexOf("MSIE ") > -1 ||
@@ -18,7 +19,7 @@ const msalConfig = { // MSAL Configuration
   auth: {
     clientId: "8453dda4-8e94-4928-8655-9a29018d2eea",
     authority: "https://login.microsoftonline.com/031162b7-774f-40b2-a8a5-8b979557e49a/v2.0",
-    redirectUri: "http://localhost:4200/",
+    redirectUri: environment.azureAD.redirectUri,
     // postLogoutRedirectUri: "http://localhost:4200/"
   },
   cache: {
