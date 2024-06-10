@@ -17,8 +17,8 @@ const isIE =
 
 const msalConfig = { // MSAL Configuration
   auth: {
-    clientId: "8453dda4-8e94-4928-8655-9a29018d2eea",
-    authority: "https://login.microsoftonline.com/031162b7-774f-40b2-a8a5-8b979557e49a/v2.0",
+    clientId: environment.azureAD.clientId,
+    authority: environment.azureAD.authority,
     redirectUri: environment.azureAD.redirectUri,
     // postLogoutRedirectUri: "http://localhost:4200/"
   },
