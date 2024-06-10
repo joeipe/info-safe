@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MsalService } from '@azure/msal-angular';
+import { AccountInfo } from '@azure/msal-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -10,6 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class AppComponent {
   title = 'info-safe';
   loginDisplay = false;
+  account!: AccountInfo;
 
   constructor(
     private modalService: NgbModal,
@@ -31,6 +33,13 @@ export class AppComponent {
           this.setLoginDisplay();
 
           localStorage.setItem("webApiAccessToken", result.accessToken);
+
+          const accounts = this.authService.instance.getAllAccounts();
+          if (accounts.length > 0) {
+            this.authService.instance.setActiveAccount(accounts[0]);
+            this.account = accounts[0];
+            console.log(accounts[0]);
+          }
 
           /*
             const accounts = this.authService.instance.getAllAccounts();

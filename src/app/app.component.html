@@ -87,8 +87,13 @@
         </ul>
         <button class="btn btn-outline-success" type="button" *ngIf="!loginDisplay"
           (click)="onLoginClick()">Login</button>
-        <button class="btn btn-outline-danger" type="button" *ngIf="loginDisplay"
-          (click)="onLogoutClick()">Logout</button>
+        <button class="btn btn-outline-danger position-relative" type="button" *ngIf="loginDisplay"
+          (click)="onLogoutClick()">Logout
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            {{ account.name }}
+            <span class="visually-hidden">unread messages</span>
+          </span>
+        </button>
       </div>
     </div>
   </nav>
