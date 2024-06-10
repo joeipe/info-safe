@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MsalService } from '@azure/msal-angular';
 import { AccountInfo } from '@azure/msal-browser';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +26,7 @@ export class AppComponent {
   onLoginClick() {
     console.log('login clicked');
     this.authService.loginPopup({
-      scopes: ['api://6bc1a37b-da3e-4b89-b621-c75c8eebee0a/FullAccess']
+      scopes: [environment.azureAD.infoSafeApiScope]
     })
       .subscribe({
         next: (result) => {
