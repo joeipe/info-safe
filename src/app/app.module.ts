@@ -10,6 +10,7 @@ import { BrowserCacheLocation, InteractionType, PublicClientApplication } from '
 import { MsalGuard, MsalInterceptor, MsalModule, MsalRedirectComponent } from '@azure/msal-angular';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from '../environments/environment';
+import { NgxStripeModule } from 'ngx-stripe';
 
 const isIE =
   window.navigator.userAgent.indexOf("MSIE ") > -1 ||
@@ -52,7 +53,9 @@ const msalConfig = { // MSAL Configuration
         protectedResourceMap: new Map([
           ['https://graph.microsoft.com/v1.0/me', ['user.read']]
         ])
-      })
+      }),
+
+    NgxStripeModule.forRoot(environment.stripe.publicKey)
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
