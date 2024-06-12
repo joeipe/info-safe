@@ -8,6 +8,6 @@ export const environment = {
         infoSafeApiScope: 'api://6bc1a37b-da3e-4b89-b621-c75c8eebee0a/FullAccess'
     },
     stripe: {
-        publicKey: 'pk_live_51PQ0S204Qxx0oOgwVre0TNGZjWhCLtellZCvjueSpK27V3uDFdyEjcjhWCYZ8PYulcppPpNgv12I04o3GkGkcEEJ00D1xwPJne',
+        publicKey: 'pk_test_51PQ0S204Qxx0oOgwTPtHhC7DHjaukAVlX6kY5YOaRTC6vtWJolTqIuGG6rDUNuQi4vYD2H4OTWygN1GdmWuUy6Go00p9pJnuYl',
     }
 };
