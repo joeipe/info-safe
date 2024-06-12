@@ -18,6 +18,7 @@ export class PaymentFormComponent implements OnInit {
     locale: 'en'
   };
 
+  loading = false;
   paying = false;
 
   paymentForm: FormGroup;
@@ -33,8 +34,10 @@ export class PaymentFormComponent implements OnInit {
       amount: [1, [Validators.required, Validators.pattern(/-?\d+(\.\d{1,2})?/)]],
     });
 
+    this.loading = true;
     this.paymentApiSvc.createPaymentIntent(this.paymentForm.get('amount')?.value).subscribe(pi => {
       this.elementsOptions.clientSecret = pi.clientSecret;
+      this.loading = false;
     });
   }
 
