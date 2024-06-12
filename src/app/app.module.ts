@@ -11,6 +11,7 @@ import { MsalGuard, MsalInterceptor, MsalModule, MsalRedirectComponent } from '@
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { NgxStripeModule } from 'ngx-stripe';
+import { PaymentFormComponent } from './payment-form/payment-form.component';
 
 const isIE =
   window.navigator.userAgent.indexOf("MSIE ") > -1 ||
@@ -32,7 +33,8 @@ const msalConfig = { // MSAL Configuration
 @NgModule({
   declarations: [
     AppComponent,
-    AppErrorComponent
+    AppErrorComponent,
+    PaymentFormComponent
   ],
   imports: [
     SharedModule,

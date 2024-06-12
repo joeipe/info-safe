@@ -4,7 +4,6 @@ import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { ContactModifyComponent } from './contact-modify/contact-modify.component';
-import { PaymentFormComponent } from './payment-form/payment-form.component';
 
 
 
@@ -12,8 +11,7 @@ import { PaymentFormComponent } from './payment-form/payment-form.component';
   declarations: [
     HomeComponent,
     ContactComponent,
-    ContactModifyComponent,
-    PaymentFormComponent
+    ContactModifyComponent
   ],
   imports: [
     ModulesRoutingModule,

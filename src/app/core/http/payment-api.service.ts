@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PaymentIntent } from '@stripe/stripe-js';
+import { IPaymentResponse } from '../models/payment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class PaymentApiService {
     this.apiUrl = `${this.apiRoot}/api/Payment`;
   }
 
-  createPaymentIntent(amount: number): Observable<PaymentIntent> {
-    return this._http.post<PaymentIntent>(`${this.apiUrl}/CreatePaymentIntent`, { amount });
+  createPaymentIntent(amount: number): Observable<IPaymentResponse> {
+    return this._http.post<IPaymentResponse>(`${this.apiUrl}/CreatePaymentIntent`, { amount });
   }
 }

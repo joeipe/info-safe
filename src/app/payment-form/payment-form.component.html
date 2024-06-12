@@ -1,0 +1,20 @@
+<h1 class="mt-5">Payment</h1>
+<div class="row g-3" [formGroup]="paymentForm">
+    <div class="col-md-6">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" readonly id="name" formControlName="name">
+    </div>
+    <div class="col-md-6">
+        <label for="amount" class="form-label">Amount</label>
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-amount">$</span>
+            <input type="text" class="form-control" readonly id="amount" formControlName="amount"
+                aria-describedby="basic-amount">
+        </div>
+    </div>
+    <ng-container *ngIf="elementsOptions?.clientSecret as clientSecret">
+        <ngx-stripe-payment [clientSecret]="clientSecret">
+        </ngx-stripe-payment>
+    </ng-container>
+    <button (click)="pay()">PAY</button>
+</div>
