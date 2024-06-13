@@ -13,6 +13,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ToastModule } from 'primeng/toast';
 import { StepperModule } from 'primeng/stepper';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { StepperModule } from 'primeng/stepper';
     ProgressSpinnerModule,
     ProgressBarModule,
     ToastModule,
-    StepperModule
+    StepperModule,
+    ConfirmPopupModule
   ]
 })
 export class SharedModule { }

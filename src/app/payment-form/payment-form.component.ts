@@ -3,11 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PaymentApiService } from '../core/http/payment-api.service';
 import { StripePaymentElementComponent, StripeService } from 'ngx-stripe';
 import { StripeElementsOptions } from '@stripe/stripe-js';
+import { MessageService } from 'primeng/api';
+import { MsalService } from '@azure/msal-angular';
 
 @Component({
   selector: 'inf-payment-form',
   templateUrl: './payment-form.component.html',
-  styleUrl: './payment-form.component.scss'
+  styleUrl: './payment-form.component.scss',
+  providers: [MessageService]
 })
 export class PaymentFormComponent implements OnInit {
 
@@ -20,17 +23,21 @@ export class PaymentFormComponent implements OnInit {
 
   loading = false;
   paying = false;
+  payed = false;
 
   paymentForm: FormGroup;
 
   constructor(
     private paymentApiSvc: PaymentApiService,
     private stripeService: StripeService,
+    private messageService: MessageService,
+    private authService: MsalService,
     private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    const accounts = this.authService.instance.getAllAccounts();
     this.paymentForm = this.formBuilder.group({
-      name: ['John', [Validators.required]],
+      name: [accounts[0].name, [Validators.required]],
       amount: [1, [Validators.required, Validators.pattern(/-?\d+(\.\d{1,2})?/)]],
     });
 
@@ -59,14 +66,16 @@ export class PaymentFormComponent implements OnInit {
         console.log('Result', result);
         if (result.error) {
           // Show error to your customer (e.g., insufficient funds)
-          alert({ success: false, error: result.error.message });
+          this.messageService.add({ severity: 'error', summary: 'Failed', detail: `Payment failed ${result.error.message}`, life: 3000 });
         } else {
           // The payment has been processed!
           if (result.paymentIntent.status === 'succeeded') {
             // Show a success message to your customer
-            alert({ success: true });
+            this.messageService.add({ severity: 'info', summary: 'Success', detail: 'Payment successful', life: 3000 });
           }
         }
+
+        this.payed = true;
       });
     } else {
       console.log(this.paymentForm);
