@@ -14,6 +14,7 @@ import { ProgressBarModule } from 'primeng/progressbar';
 import { ToastModule } from 'primeng/toast';
 import { StepperModule } from 'primeng/stepper';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { DividerModule } from 'primeng/divider';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     ProgressBarModule,
     ToastModule,
     StepperModule,
-    ConfirmPopupModule
+    ConfirmPopupModule,
+    DividerModule
   ]
 })
 export class SharedModule { }

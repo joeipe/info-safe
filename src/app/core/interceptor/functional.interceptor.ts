@@ -39,7 +39,11 @@ export const errorInterceptorFunctional: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
       console.error('http Interceptor Functional Error:', error);
-      router.navigate(['/error']);
+      if (error && (error.status === 401 || error.status === 403)) {
+        router.navigate(['/accessdenied']);
+      } else {
+        router.navigate(['/error']);
+      }
       return throwError(() => error);
     })
   );

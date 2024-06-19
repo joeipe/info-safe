@@ -85,7 +85,14 @@
             <a class="nav-link" aria-current="page" [routerLink]="['/contact']" routerLinkActive="active">Contact</a>
           </li>
           <li class="nav-item" *ngIf="loginDisplay">
+            <a class="nav-link" aria-current="page" [routerLink]="['/featureflag']"
+              routerLinkActive="active">FeatureFlag</a>
+          </li>
+          <li class="nav-item" *ngIf="loginDisplay">
             <a class="nav-link" aria-current="page" [routerLink]="['/payment']" routerLinkActive="active">Payment</a>
+          </li>
+          <li class="nav-item" *ngIf="loginDisplay && isAdmin()">
+            <a class="nav-link" aria-current="page" [routerLink]="['/auth']" routerLinkActive="active">Auth</a>
           </li>
         </ul>
         <button class="btn btn-outline-success" type="button" *ngIf="!loginDisplay"
@@ -116,6 +123,7 @@
         <use xlink:href="#bootstrap" />
       </svg>
     </a>
-    <span class="text-muted">&copy; &#8521;&#8520; &#9993; joe.ipe&commat;hotmail.com &#9743; +61 469 759 250</span>
+    <span class="text-muted">&copy; 2024 &#8521;&#8520; &#9993; joe.ipe&commat;hotmail.com &#9743; +61 469 759
+      250</span>
   </div>
 </footer>

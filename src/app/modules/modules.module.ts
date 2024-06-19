@@ -4,6 +4,8 @@ import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { ContactModifyComponent } from './contact-modify/contact-modify.component';
+import { FeatureFlagComponent } from './feature-flag/feature-flag.component';
+import { AuthDetailsComponent } from './auth-details/auth-details.component';
 
 
 
@@ -11,7 +13,9 @@ import { ContactModifyComponent } from './contact-modify/contact-modify.componen
   declarations: [
     HomeComponent,
     ContactComponent,
-    ContactModifyComponent
+    ContactModifyComponent,
+    FeatureFlagComponent,
+    AuthDetailsComponent
   ],
   imports: [
     ModulesRoutingModule,

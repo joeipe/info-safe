@@ -4,12 +4,16 @@ import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
 import { ContactModifyComponent } from './contact-modify/contact-modify.component';
 import { PaymentFormComponent } from '../payment-form/payment-form.component';
+import { FeatureFlagComponent } from './feature-flag/feature-flag.component';
+import { AuthDetailsComponent } from './auth-details/auth-details.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'contact/:id', component: ContactModifyComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'payment', component: PaymentFormComponent },
+  { path: 'featureflag', component: FeatureFlagComponent },
+  { path: 'auth', component: AuthDetailsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
 

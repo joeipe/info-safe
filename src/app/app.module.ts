@@ -13,6 +13,7 @@ import { environment } from '../environments/environment';
 import { NgxStripeModule } from 'ngx-stripe';
 import { PaymentFormComponent } from './payment-form/payment-form.component';
 import { msalConfig, protectedResources } from './core/auth/auth-config';
+import { AppAccessDeniedComponent } from './pages/app-access-denied.component';
 
 const isIE =
   window.navigator.userAgent.indexOf("MSIE ") > -1 ||
@@ -22,7 +23,8 @@ const isIE =
   declarations: [
     AppComponent,
     AppErrorComponent,
-    PaymentFormComponent
+    PaymentFormComponent,
+    AppAccessDeniedComponent
   ],
   imports: [
     SharedModule,

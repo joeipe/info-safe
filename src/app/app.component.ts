@@ -73,4 +73,12 @@ export class AppComponent {
   setLoginDisplay() {
     this.loginDisplay = this.authService.instance.getAllAccounts().length > 0;
   }
+
+  isAdmin(): boolean {
+    let retval = false;
+    if (this.account.idTokenClaims?.oid === 'f47a627f-daee-4491-a1be-1a3a918e982f') {
+      retval = true;
+    }
+    return retval;
+  }
 }
