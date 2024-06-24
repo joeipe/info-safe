@@ -10,6 +10,45 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
+`npx ng new --no-standalone info-safe`
+
+`npx ng g m modules/modules  --flat --module=app`
+`npx ng g m modules/modules-routing  --flat --module=modules`
+`npx ng g m shared/shared  --flat --module=app`
+`npx ng g m core/core  --flat --module=app`
+
+`npm install bootstrap bootstrap-icons`
+`npm install @ng-bootstrap/ng-bootstrap@next`
+
+`npm install primeng`
+`npm install primeicons`
+
+`npx ng generate environments`
+
+`npx ng g c pages/app-error --flat`
+`npx ng g c pages/app-access-denied --flat`
+`npx ng g c modules/home/home  --flat`
+`npx ng g c modules/contact/contact  --flat`
+`npx ng g c modules/contact-modify/contact-modify  --flat`
+`npx ng g c modules/feature-flag/feature-flag  --flat`
+`npx ng g c modules/auth-details/auth-details  --flat`
+
+`npx ng g s core/http/contact-api  --flat`
+`npx ng g s core/http/feature-api  --flat`
+`npx ng g s core/http/user-api  --flat`
+`npx ng g interceptor core/interceptor/functional --flat`
+
+`npm install msal @azure/msal-angular`
+`npm install @azure/msal-browser @azure/msal-angular`
+
+`npm install http-server -g`
+`http-server dist/info-safe`
+
+`npm install ngx-stripe@v17.2.0 @stripe/stripe-js`
+
+`npx ng g c modules/payment-form/payment-form  --flat`
+`npx ng g s core/http/payment-api  --flat`
+
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
