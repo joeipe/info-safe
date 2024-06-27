@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { IContact } from '../models/contact.model';
 import { IFeature } from '../models/feature.model';
 import { environment } from "../../../environments/environment";
+import { DateHelperService } from '../services/date-helper.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,8 @@ export class ContactApiService {
   apiUrl: string;
 
   constructor(
-    private _http: HttpClient
+    private _http: HttpClient,
+    private dateHelperSvc: DateHelperService
   ) {
     this.apiUrl = `${this.apiRoot}/api/Contact`;
   }
@@ -23,7 +25,11 @@ export class ContactApiService {
   }
 
   getContactById(id: number): Observable<IContact> {
-    return this._http.get<IContact>(`${this.apiUrl}/GetContactById/${id}`);
+    return this._http.get<IContact>(`${this.apiUrl}/GetContactById/${id}`)
+      .pipe(map(c => {
+        c.doB = this.dateHelperSvc.getISOShortDateFormat(c.doB);
+        return c;
+      }));
   }
 
   getFullContacts(): Observable<IContact[]> {
@@ -31,6 +37,7 @@ export class ContactApiService {
   }
 
   saveContact(value: IContact): Observable<any> {
+    value.doB = this.dateHelperSvc.getStandardDateFormat(value.doB);
     return this._http.post(`${this.apiUrl}/SaveContact`, value);
   }
 
