@@ -11,7 +11,7 @@ import { forkJoin } from 'rxjs';
 })
 export class GalleryComponent implements OnInit {
   files: IBlob[] = [];
-  file: IBlob;
+  file?: IBlob;
   image: any;
   loading: boolean = false;
 

@@ -26,7 +26,8 @@ export class BlobStorageApiService {
   }
 
   downloadFile(fileName: string): Observable<IBlob> {
-    fileName = encodeURIComponent(fileName)
+    fileName = encodeURIComponent(fileName);
+    console.log(`BlobStorageApiService - downloadFile - ${fileName}`);
     return this._http.get<IBlob>(`${this.apiUrl}/DownloadFile/${fileName}`);
   }
 }
