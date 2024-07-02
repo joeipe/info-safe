@@ -6,6 +6,7 @@ import { ContactModifyComponent } from './contact-modify/contact-modify.componen
 import { PaymentFormComponent } from '../payment-form/payment-form.component';
 import { FeatureFlagComponent } from './feature-flag/feature-flag.component';
 import { AuthDetailsComponent } from './auth-details/auth-details.component';
+import { GalleryComponent } from './gallery/gallery.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'payment', component: PaymentFormComponent },
   { path: 'featureflag', component: FeatureFlagComponent },
+  { path: 'gallery', component: GalleryComponent },
   { path: 'auth', component: AuthDetailsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];

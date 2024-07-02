@@ -45,6 +45,9 @@
             </li>
             <li class="scroll-to-section"><a [routerLink]="['/payment']" routerLinkActive="active"
                 *ngIf="loginDisplay">Payment</a></li>
+            <li class="scroll-to-section"><a [routerLink]="['/gallery']" routerLinkActive="active"
+                *ngIf="loginDisplay">Gallery</a>
+            </li>
             <li class="scroll-to-section"><a [routerLink]="['/auth']" routerLinkActive="active"
                 *ngIf="loginDisplay && isAdmin()">Auth</a></li>
           </ul>
