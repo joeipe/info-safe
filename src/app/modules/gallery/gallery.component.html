@@ -7,17 +7,23 @@
                     <h2>Gallery</h2>
                 </div>
                 <p-progressBar mode="indeterminate" [style]="{ height: '6px' }" *ngIf="loading" />
-                <div class="row g-0">
-                    <div class="col-6 col-md-4">
-                        <div class="list-group" *ngFor="let file of files">
-                            <button type="button" class="list-group-item list-group-item-action">
-                                {{ file.name }} - {{ file.contentType }}
-                                <!-- file.uri -->
-                            </button>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="list-group" *ngFor="let file of files">
+                                <button type="button" class="list-group-item list-group-item-action"
+                                    (click)="onImageClick(file.name!)">
+                                    {{ file.name }} - {{ file.contentType }}
+                                    <!-- file.uri -->
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-6 col-md-8">
-                        <img id="myimage" [src]='thumbnail' />
+                        <div class="col-8">
+                            <figure class="figure">
+                                <img [src]='image' />
+                                <figcaption class="figure-caption text-end">{{file.name}}.</figcaption>
+                            </figure>
+                        </div>
                     </div>
                 </div>
             </div>
