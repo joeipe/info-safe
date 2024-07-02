@@ -43,4 +43,8 @@ export class GalleryComponent implements OnInit {
       this.loading = false;
     });
   }
+
+  get isVideo() {
+    return this.file?.contentType == 'video/mp4';
+  }
 }

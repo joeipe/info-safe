@@ -19,8 +19,15 @@
                             </div>
                         </div>
                         <div class="col-8">
-                            <figure class="figure">
+                            <figure class="figure" *ngIf="!isVideo">
                                 <img [src]='image' />
+                                <figcaption class="figure-caption text-end">{{ file?.name }}.</figcaption>
+                            </figure>
+                            <figure class="figure" *ngIf="isVideo">
+                                <video controls>
+                                    <source [src]='image' [type]="file?.contentType">
+                                    Your browser does not support the video tag.
+                                </video>
                                 <figcaption class="figure-caption text-end">{{ file?.name }}.</figcaption>
                             </figure>
                         </div>
