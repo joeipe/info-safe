@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { IBlob } from '../models/blob.model';
+import { IBlob, IBlobRequest } from '../models/blob.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,8 +26,9 @@ export class BlobStorageApiService {
   }
 
   downloadFile(fileName: string): Observable<IBlob> {
-    fileName = encodeURIComponent(fileName);
-    console.log(`BlobStorageApiService - downloadFile - ${fileName}`);
-    return this._http.get<IBlob>(`${this.apiUrl}/DownloadFile/${fileName}`);
+    let blobRequest: IBlobRequest = {
+      fileName: encodeURIComponent(fileName)
+    }
+    return this._http.post<IBlob>(`${this.apiUrl}/DownloadFile`, blobRequest);
   }
 }

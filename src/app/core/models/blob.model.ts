@@ -10,3 +10,7 @@ export interface IBlobResponse {
     error: boolean;
     blob?: IBlob;
 }
+
+export interface IBlobRequest {
+    fileName: string;
+}
