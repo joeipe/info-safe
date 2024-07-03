@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IBlob, IBlobRequest, IBlobResponse } from '../models/blob.model';
 
@@ -37,6 +37,12 @@ export class BlobStorageApiService {
       fileName: encodeURIComponent(fileName)
     }
 
-    return this._http.request<IBlobResponse>('delete', `${this.apiUrl}/DeleteFile`, { body: blobRequest });
+    return this._http.request<IBlobResponse>('delete', `${this.apiUrl}/DeleteFile`,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+        body: blobRequest
+      });
   }
 }
