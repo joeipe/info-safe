@@ -20,6 +20,10 @@
                             </div>
                         </div>
                         <div class="col-8">
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                                <button class="btn btn-primary me-md-2" type="button"
+                                    (click)="onDeleteClick(file?.name!)">Delete</button>
+                            </div>
                             <figure class="figure" *ngIf="!isVideo">
                                 <img [src]='media' />
                                 <figcaption class="figure-caption text-end">{{ file?.name }}.</figcaption>

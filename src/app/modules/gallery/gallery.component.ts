@@ -44,6 +44,14 @@ export class GalleryComponent implements OnInit {
     });
   }
 
+  onDeleteClick(fileName: string) {
+    this.loading = true;
+    this.blobStorageApiSvc.deleteFile(fileName).subscribe(result => {
+      this.loading = false;
+      this.ngOnInit();
+    });
+  }
+
   isVideoItem(contentType: string): boolean {
     return contentType == 'video/mp4';
   }
