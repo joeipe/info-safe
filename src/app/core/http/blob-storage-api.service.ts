@@ -33,7 +33,10 @@ export class BlobStorageApiService {
   }
 
   deleteFile(fileName: string): Observable<IBlobResponse> {
-    fileName = encodeURIComponent(fileName);
-    return this._http.delete<IBlobResponse>(`${this.apiUrl}/DeleteFile/${fileName}`);
+    let blobRequest: IBlobRequest = {
+      fileName: encodeURIComponent(fileName)
+    }
+
+    return this._http.request<IBlobResponse>('delete', `${this.apiUrl}/DeleteFile`, { body: blobRequest });
   }
 }
