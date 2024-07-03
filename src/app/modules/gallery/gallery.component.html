@@ -12,20 +12,21 @@
                         <div class="col-4">
                             <div class="list-group" *ngFor="let file of files">
                                 <button type="button" class="list-group-item list-group-item-action"
+                                    [ngClass]="{'list-group-item-primary': isVideoItem(file.contentType!), 'list-group-item-warning': !isVideoItem(file.contentType!)}"
                                     (click)="onImageClick(file.name!)">
-                                    {{ file.name }} - {{ file.contentType }}
+                                    {{ file.name | slice:0:40}}{{ file.name?.length! > 40 ? '...' : '' }}
                                     <!-- file.uri -->
                                 </button>
                             </div>
                         </div>
                         <div class="col-8">
                             <figure class="figure" *ngIf="!isVideo">
-                                <img [src]='image' />
+                                <img [src]='media' />
                                 <figcaption class="figure-caption text-end">{{ file?.name }}.</figcaption>
                             </figure>
                             <figure class="figure" *ngIf="isVideo">
                                 <video controls>
-                                    <source [src]='image' [type]="file?.contentType">
+                                    <source [src]='media' [type]="file?.contentType">
                                     Your browser does not support the video tag.
                                 </video>
                                 <figcaption class="figure-caption text-end">{{ file?.name }}.</figcaption>

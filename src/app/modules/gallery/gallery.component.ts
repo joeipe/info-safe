@@ -12,7 +12,7 @@ import { forkJoin } from 'rxjs';
 export class GalleryComponent implements OnInit {
   files: IBlob[] = [];
   file?: IBlob;
-  image: any;
+  media: any;
   loading: boolean = false;
 
   constructor(
@@ -39,9 +39,13 @@ export class GalleryComponent implements OnInit {
     this.loading = true;
     this.blobStorageApiSvc.downloadFile(fileName).subscribe(result => {
       this.file = result;
-      this.image = this.sanitizer.bypassSecurityTrustUrl(this.file.content!);
+      this.media = this.sanitizer.bypassSecurityTrustUrl(this.file.content!);
       this.loading = false;
     });
+  }
+
+  isVideoItem(contentType: string): boolean {
+    return contentType == 'video/mp4';
   }
 
   get isVideo() {
