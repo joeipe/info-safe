@@ -17,6 +17,10 @@ export class BlobStorageApiService {
     this.apiUrl = `${this.apiRoot}/api/BlobStorage`;
   }
 
+  public uploadFile(frmData: FormData): Observable<IBlobResponse> {
+    return this._http.post<IBlobResponse>(`${this.apiUrl}/UploadFile`, frmData);
+  }
+
   listFiles(prefix?: string): Observable<IBlob[]> {
     if (prefix) {
       return this._http.get<IBlob[]>(`${this.apiUrl}/ListFiles/${prefix}`);
@@ -36,12 +40,10 @@ export class BlobStorageApiService {
     let blobRequest: IBlobRequest = {
       fileName: encodeURIComponent(fileName)
     }
-
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this._http.request<IBlobResponse>('delete', `${this.apiUrl}/DeleteFile`,
       {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-        }),
+        headers: headers,
         body: blobRequest
       });
   }

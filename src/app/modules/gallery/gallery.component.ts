@@ -52,6 +52,20 @@ export class GalleryComponent implements OnInit {
     });
   }
 
+  onFileSelected(event: any) {
+    this.loading = true;
+    const file: File = event.target.files[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append("blob", file); // 'blob' string should atch with Api param name
+
+      this.blobStorageApiSvc.uploadFile(formData).subscribe(result => {
+        this.loading = false;
+        this.ngOnInit();
+      });
+    }
+  }
+
   isVideoItem(contentType: string): boolean {
     return contentType == 'video/mp4';
   }
