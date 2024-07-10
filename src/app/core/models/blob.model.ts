@@ -3,6 +3,7 @@ export interface IBlob {
     name?: string
     contentType?: string;
     content?: string;
+    metaData?: IBlobMetaData;
 }
 
 export interface IBlobResponse {
@@ -13,4 +14,10 @@ export interface IBlobResponse {
 
 export interface IBlobRequest {
     fileName: string;
+    metaData?: IBlobMetaData;
+}
+
+export interface IBlobMetaData {
+    title?: string;
+    description?: string;
 }

@@ -25,7 +25,9 @@
                                 <button type="button" class="list-group-item list-group-item-action"
                                     [ngClass]="{'list-group-item-primary': isVideoItem(file.contentType!), 'list-group-item-warning': !isVideoItem(file.contentType!)}"
                                     (click)="onImageClick(file.name!)">
-                                    {{ file.name | slice:0:40}}{{ file.name?.length! > 40 ? '...' : '' }}
+                                    Name: {{ file.name | slice:0:40}}{{ file.name?.length! > 40 ? '...' : '' }} <br>
+                                    Title: {{ file.metaData?.title }} <br>
+                                    Description: {{ file.metaData?.description }}
                                     <!-- file.uri -->
                                 </button>
                             </div>

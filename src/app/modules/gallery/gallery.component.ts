@@ -57,7 +57,7 @@ export class GalleryComponent implements OnInit {
     const file: File = event.target.files[0];
     if (file) {
       const formData = new FormData();
-      formData.append("blob", file); // 'blob' string should atch with Api param name
+      formData.append("blob", file); // 'blob' string should match with Api param name
 
       this.blobStorageApiSvc.uploadFile(formData).subscribe(result => {
         this.loading = false;
