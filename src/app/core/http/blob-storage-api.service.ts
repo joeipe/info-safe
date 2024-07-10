@@ -47,4 +47,9 @@ export class BlobStorageApiService {
         body: blobRequest
       });
   }
+
+  updateMetadata(blobRequest: IBlobRequest): Observable<any> {
+    blobRequest.fileName = encodeURIComponent(blobRequest.fileName)
+    return this._http.post(`${this.apiUrl}/UpdateMetadata`, blobRequest);
+  }
 }

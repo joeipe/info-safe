@@ -9,12 +9,34 @@
                 <p-progressBar mode="indeterminate" [style]="{ height: '6px' }" *ngIf="loading" />
                 <div class="container">
                     <div class="row">
-                        <div class="col-4">
-                            <div class="mb-3">
-                                <input class="form-control" type="file" accept=".jpg,.png,.gif"
-                                    (change)="onFileSelected($event)">
+                        <form class="row gy-2 gx-3 align-items-center" [formGroup]="form" (ngSubmit)="onSaveClick()">
+                            <div class="col-auto">
+                                <label class="visually-hidden" for="title">Title</label>
+                                <div class="input-group">
+                                    <div class="input-group-text">Title</div>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="{ 'is-invalid': title?.invalid && title?.touched }" id="title"
+                                        placeholder="Title" formControlName="title">
+                                </div>
                             </div>
-                        </div>
+                            <div class="col-auto">
+                                <label class="visually-hidden" for="description">Description</label>
+                                <div class="input-group">
+                                    <div class="input-group-text">Description</div>
+                                    <input type="text" class="form-control"
+                                        [ngClass]="{ 'is-invalid': description?.invalid && description?.touched }"
+                                        id="description" placeholder="Description" formControlName="description">
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <input class="form-control" type="file" accept=".jpg,.png,.gif"
+                                    [ngClass]="{ 'is-invalid': newFile?.invalid && newFile?.touched }"
+                                    (change)="onFileSelected($event)" formControlName="newFile">
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+                            </div>
+                        </form>
                     </div>
                     <div class="row">
                         &nbsp;
