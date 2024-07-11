@@ -7,6 +7,7 @@ import { ContactModifyComponent } from './contact-modify/contact-modify.componen
 import { FeatureFlagComponent } from './feature-flag/feature-flag.component';
 import { AuthDetailsComponent } from './auth-details/auth-details.component';
 import { GalleryComponent } from './gallery/gallery.component';
+import { GallerySasComponent } from './gallery-sas/gallery-sas.component';
 
 
 
@@ -17,7 +18,8 @@ import { GalleryComponent } from './gallery/gallery.component';
     ContactModifyComponent,
     FeatureFlagComponent,
     AuthDetailsComponent,
-    GalleryComponent
+    GalleryComponent,
+    GallerySasComponent
   ],
   imports: [
     ModulesRoutingModule,

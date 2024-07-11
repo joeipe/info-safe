@@ -48,6 +48,9 @@
             <li class="scroll-to-section"><a [routerLink]="['/gallery']" routerLinkActive="active"
                 *ngIf="loginDisplay">Gallery</a>
             </li>
+            <li class="scroll-to-section"><a [routerLink]="['/gallerysas']" routerLinkActive="active"
+                *ngIf="loginDisplay">GallerySas</a>
+            </li>
             <li class="scroll-to-section"><a [routerLink]="['/auth']" routerLinkActive="active"
                 *ngIf="loginDisplay && isAdmin()">Auth</a></li>
           </ul>

@@ -1,5 +1,6 @@
 export interface IBlob {
     uri?: string;
+    uriWithSasToken?: string;
     name?: string
     contentType?: string;
     content?: string;
