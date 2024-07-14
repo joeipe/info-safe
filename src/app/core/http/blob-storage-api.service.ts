@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { IBlob, IBlobRequest, IBlobResponse } from '../models/blob.model';
 
 @Injectable({
@@ -23,9 +23,17 @@ export class BlobStorageApiService {
 
   listFiles(prefix?: string): Observable<IBlob[]> {
     if (prefix) {
-      return this._http.get<IBlob[]>(`${this.apiUrl}/ListFiles/${prefix}`);
+      return this._http.get<IBlob[]>(`${this.apiUrl}/ListFiles/${prefix}`)
+        .pipe(map(data => data.map(c => {
+          c.contentType = c.contentType != 'video/quicktime' ? c.contentType : 'video/mp4'
+          return c;
+        })));
     } else {
-      return this._http.get<IBlob[]>(`${this.apiUrl}/ListFiles`);
+      return this._http.get<IBlob[]>(`${this.apiUrl}/ListFiles`)
+        .pipe(map(data => data.map(c => {
+          c.contentType = c.contentType != 'video/quicktime' ? c.contentType : 'video/mp4'
+          return c;
+        })));
     }
   }
 

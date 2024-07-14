@@ -29,7 +29,7 @@
                                 </div>
                             </div>
                             <div class="col-auto">
-                                <input class="form-control" type="file" accept=".jpg,.png,.gif"
+                                <input class="form-control" type="file" accept=".jpg,.png,.mov"
                                     [ngClass]="{ 'is-invalid': newFile?.invalid && newFile?.touched }"
                                     (change)="onFileSelected($event)" formControlName="newFile">
                             </div>
