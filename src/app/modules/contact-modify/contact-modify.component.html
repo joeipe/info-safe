@@ -1,275 +1,271 @@
-<div class="services section" id="services">
-    <div class="container">
+<div class="gaming-library">
+    <div class="col-lg-12">
+        <div class="heading-section">
+            <h4><em>Contact</em> {{ action }}</h4>
+        </div>
         <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="section-heading">
-                    <h6>Contact</h6>
-                    <h2>Contact {{ action }}</h2>
-                </div>
-                <p-progressBar mode="indeterminate" [style]="{ height: '6px' }" *ngIf="loading" />
-                <p class="lead">
-                    <p-stepper>
-                        <p-stepperPanel header="Basic">
-                            <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
-                                <button class="bg-transparent border-none inline-flex flex-column gap-2"
-                                    (click)="onClick.emit()">
-                                    <span
-                                        class="border-round border-2 w-3rem h-3rem inline-flex align-items-center justify-content-center"
-                                        [ngClass]="{
-                                            'bg-danger border-primary': basicForm.invalid,
-                                            'surface-border': !basicForm.invalid
-                                        }">
-                                        <i class="pi pi-user"> Basic</i>
-                                    </span>
-                                </button>
-                            </ng-template>
-                            <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
-                                <div class="flex flex-column h-12rem">
-                                    <div
-                                        class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
-                                        <form [formGroup]="basicForm" (ngSubmit)="onBasicSaveClick()">
-                                            <div class="col-md-12 mb-md-0 p-md-4 card text-bg-light">
-                                                <div class="mb-3 row">
-                                                    <label for="firstName" class="col-sm-2 col-form-label">First
-                                                        Name</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control"
-                                                            [ngClass]="{ 'is-invalid': firstName?.invalid && firstName?.touched }"
-                                                            id="firstName" formControlName="firstName">
-                                                        <em class="invalid-feedback"
-                                                            *ngIf="firstName?.invalid && firstName?.touched">Please
-                                                            enter First
-                                                            Name</em>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="lastName" class="col-sm-2 col-form-label">Last
-                                                        Name</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control"
-                                                            [ngClass]="{ 'is-invalid': lastName?.invalid && lastName?.touched }"
-                                                            id="lastName" formControlName="lastName">
-                                                        <em class="invalid-feedback"
-                                                            *ngIf="lastName?.errors?.['required'] && lastName?.touched">Please
-                                                            enter
-                                                            Last Name</em>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="doB" class="col-sm-2 col-form-label">DoB</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="date" class="form-control"
-                                                            [ngClass]="{ 'is-invalid': doB?.invalid && doB?.touched }"
-                                                            id="doB" formControlName="doB">
-                                                        <em class="invalid-feedback"
-                                                            *ngIf="doB?.invalid && doB?.touched">Please enter DoB</em>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <button type="submit" class="btn btn-primary"
-                                                        [disabled]="basicForm.invalid">Save</button>
+            <p-progressBar mode="indeterminate" [style]="{ height: '6px' }" *ngIf="loading" />
+            <p class="lead">
+                <p-stepper>
+                    <p-stepperPanel header="Basic">
+                        <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
+                            <button class="bg-transparent border-none inline-flex flex-column gap-2"
+                                (click)="onClick.emit()">
+                                <span
+                                    class="border-round border-2 w-3rem h-3rem inline-flex align-items-center justify-content-center"
+                                    [ngClass]="{
+                                        'bg-danger border-primary': basicForm.invalid,
+                                        'surface-border': !basicForm.invalid
+                                    }">
+                                    <i class="pi pi-user"> Basic</i>
+                                </span>
+                            </button>
+                        </ng-template>
+                        <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
+                            <div class="flex flex-column h-12rem">
+                                <div
+                                    class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
+                                    <form [formGroup]="basicForm" (ngSubmit)="onBasicSaveClick()">
+                                        <div class="col-md-12 mb-md-0 p-md-4 card text-bg-light">
+                                            <div class="mb-3 row">
+                                                <label for="firstName" class="col-sm-2 col-form-label">First
+                                                    Name</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control"
+                                                        [ngClass]="{ 'is-invalid': firstName?.invalid && firstName?.touched }"
+                                                        id="firstName" formControlName="firstName">
+                                                    <em class="invalid-feedback"
+                                                        *ngIf="firstName?.invalid && firstName?.touched">Please
+                                                        enter First
+                                                        Name</em>
                                                 </div>
                                             </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="flex pt-4 justify-content-end">
-                                    <p-button label="Next" icon="pi pi-arrow-right" iconPos="right"
-                                        (onClick)="nextCallback.emit()" />
-                                </div>
-                            </ng-template>
-                        </p-stepperPanel>
-                        <p-stepperPanel header="Address">
-                            <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
-                                <button class="bg-transparent border-none inline-flex flex-column gap-2"
-                                    (click)="onClick.emit()">
-                                    <span
-                                        class="border-round border-2 w-3rem h-3rem inline-flex align-items-center justify-content-center"
-                                        [ngClass]="{
-                                            'bg-danger border-primary': addressForm.invalid,
-                                            'surface-border': !addressForm.invalid
-                                        }">
-                                        <i class="pi pi-address-book"> Address</i>
-                                    </span>
-                                </button>
-                            </ng-template>
-                            <ng-template pTemplate="content" let-prevCallback="prevCallback"
-                                let-nextCallback="nextCallback" let-index="index">
-                                <div class="flex flex-column h-12rem">
-                                    <div
-                                        class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
-                                        <form [formGroup]="addressForm" (ngSubmit)="onAddressSaveClick()">
-                                            <div class="col-md-12 mb-md-0 p-md-4 card text-bg-light">
-                                                <div class="mb-3 row">
-                                                    <label for="address1"
-                                                        class="col-sm-2 col-form-label">Address</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="address1"
-                                                            formControlName="address1">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="address2" class="col-sm-2 col-form-label">Address
-                                                        2</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="address2"
-                                                            formControlName="address2">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="address3" class="col-sm-2 col-form-label">Address
-                                                        3</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="address3"
-                                                            formControlName="address3">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="city" class="col-sm-2 col-form-label">City</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="city"
-                                                            formControlName="city">
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="state" class="col-sm-2 col-form-label">State</label>
-                                                    <div class="col-sm-10">
-                                                        <select id="state" class="form-select" formControlName="state">
-                                                            <option selected [value]="">Choose...</option>
-                                                            <option *ngFor="let stateType of stateTypes"
-                                                                [value]="stateType.value">{{ stateType.title }}</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="postalCode" class="col-sm-2 col-form-label">Postal
-                                                        Code</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" class="form-control" id="postalCode"
-                                                            formControlName="postalCode">
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <button type="submit" class="btn btn-primary"
-                                                        [disabled]="addressForm.invalid">Save</button>
+                                            <div class="mb-3 row">
+                                                <label for="lastName" class="col-sm-2 col-form-label">Last
+                                                    Name</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control"
+                                                        [ngClass]="{ 'is-invalid': lastName?.invalid && lastName?.touched }"
+                                                        id="lastName" formControlName="lastName">
+                                                    <em class="invalid-feedback"
+                                                        *ngIf="lastName?.errors?.['required'] && lastName?.touched">Please
+                                                        enter
+                                                        Last Name</em>
                                                 </div>
                                             </div>
+                                            <div class="mb-3 row">
+                                                <label for="doB" class="col-sm-2 col-form-label">DoB</label>
+                                                <div class="col-sm-10">
+                                                    <input type="date" class="form-control"
+                                                        [ngClass]="{ 'is-invalid': doB?.invalid && doB?.touched }"
+                                                        id="doB" formControlName="doB">
+                                                    <em class="invalid-feedback"
+                                                        *ngIf="doB?.invalid && doB?.touched">Please enter DoB</em>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-primary"
+                                                    [disabled]="basicForm.invalid">Save</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="flex pt-4 justify-content-end">
+                                <p-button label="Next" icon="pi pi-arrow-right" iconPos="right"
+                                    (onClick)="nextCallback.emit()" />
+                            </div>
+                        </ng-template>
+                    </p-stepperPanel>
+                    <p-stepperPanel header="Address">
+                        <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
+                            <button class="bg-transparent border-none inline-flex flex-column gap-2"
+                                (click)="onClick.emit()">
+                                <span
+                                    class="border-round border-2 w-3rem h-3rem inline-flex align-items-center justify-content-center"
+                                    [ngClass]="{
+                                        'bg-danger border-primary': addressForm.invalid,
+                                        'surface-border': !addressForm.invalid
+                                    }">
+                                    <i class="pi pi-address-book"> Address</i>
+                                </span>
+                            </button>
+                        </ng-template>
+                        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
+                            let-index="index">
+                            <div class="flex flex-column h-12rem">
+                                <div
+                                    class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
+                                    <form [formGroup]="addressForm" (ngSubmit)="onAddressSaveClick()">
+                                        <div class="col-md-12 mb-md-0 p-md-4 card text-bg-light">
+                                            <div class="mb-3 row">
+                                                <label for="address1" class="col-sm-2 col-form-label">Address</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="address1"
+                                                        formControlName="address1">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="address2" class="col-sm-2 col-form-label">Address
+                                                    2</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="address2"
+                                                        formControlName="address2">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="address3" class="col-sm-2 col-form-label">Address
+                                                    3</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="address3"
+                                                        formControlName="address3">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="city" class="col-sm-2 col-form-label">City</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="city"
+                                                        formControlName="city">
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="state" class="col-sm-2 col-form-label">State</label>
+                                                <div class="col-sm-10">
+                                                    <select id="state" class="form-select" formControlName="state">
+                                                        <option selected [value]="">Choose...</option>
+                                                        <option *ngFor="let stateType of stateTypes"
+                                                            [value]="stateType.value">{{ stateType.title }}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 row">
+                                                <label for="postalCode" class="col-sm-2 col-form-label">Postal
+                                                    Code</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" class="form-control" id="postalCode"
+                                                        formControlName="postalCode">
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-primary"
+                                                    [disabled]="addressForm.invalid">Save</button>
+                                            </div>
+                                        </div>
 
-                                        </form>
-                                    </div>
+                                    </form>
                                 </div>
-                                <div class="flex pt-4 justify-content-between">
-                                    <p-button label="Back" icon="pi pi-arrow-left" (onClick)="prevCallback.emit()" />
-                                    <p-button label="Next" icon="pi pi-arrow-right" iconPos="right"
-                                        (onClick)="nextCallback.emit()" />
-                                </div>
-                            </ng-template>
-                        </p-stepperPanel>
-                        <p-stepperPanel header="Phone Number">
-                            <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
-                                <button class="bg-transparent border-none inline-flex flex-column gap-2"
-                                    (click)="onClick.emit()">
-                                    <span
-                                        class="border-round border-2 w-3rem h-3rem inline-flex align-items-center justify-content-center"
-                                        [ngClass]="{
-                                            'bg-danger border-primary': phoneNumberForm.invalid,
-                                            'surface-border': !phoneNumberForm.invalid
-                                        }">
-                                        <i class="pi pi-phone"> Phone Number</i>
-                                    </span>
-                                </button>
-                            </ng-template>
-                            <ng-template pTemplate="content" let-prevCallback="prevCallback"
-                                let-nextCallback="nextCallback" let-index="index">
-                                <div class="flex flex-column h-12rem">
-                                    <div
-                                        class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
-                                        <form [formGroup]="phoneNumberForm" (ngSubmit)="onPhoneNumberSaveClick()">
-                                            <div class="col-md-12 mb-md-0 p-md-4 card text-bg-light">
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1">Mobile</span>
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Mobile Phone Number" aria-label="mobile"
-                                                        aria-describedby="basic-addon1" formControlName="mobile">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1">Business</span>
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Business Phone Number" aria-label="business"
-                                                        aria-describedby="basic-addon1" formControlName="business">
-                                                </div>
-                                                <div class="input-group mb-3">
-                                                    <span class="input-group-text" id="basic-addon1">Work</span>
-                                                    <input type="text" class="form-control"
-                                                        placeholder="Work Phone Number" aria-label="work"
-                                                        aria-describedby="basic-addon1" formControlName="work">
-                                                </div>
-                                                <div class="col-12">
-                                                    <button type="submit" class="btn btn-primary"
-                                                        [disabled]="phoneNumberForm.invalid">Save</button>
-                                                </div>
+                            </div>
+                            <div class="flex pt-4 justify-content-between">
+                                <p-button label="Back" icon="pi pi-arrow-left" (onClick)="prevCallback.emit()" />
+                                <p-button label="Next" icon="pi pi-arrow-right" iconPos="right"
+                                    (onClick)="nextCallback.emit()" />
+                            </div>
+                        </ng-template>
+                    </p-stepperPanel>
+                    <p-stepperPanel header="Phone Number">
+                        <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
+                            <button class="bg-transparent border-none inline-flex flex-column gap-2"
+                                (click)="onClick.emit()">
+                                <span
+                                    class="border-round border-2 w-3rem h-3rem inline-flex align-items-center justify-content-center"
+                                    [ngClass]="{
+                                        'bg-danger border-primary': phoneNumberForm.invalid,
+                                        'surface-border': !phoneNumberForm.invalid
+                                    }">
+                                    <i class="pi pi-phone"> Phone Number</i>
+                                </span>
+                            </button>
+                        </ng-template>
+                        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback"
+                            let-index="index">
+                            <div class="flex flex-column h-12rem">
+                                <div
+                                    class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
+                                    <form [formGroup]="phoneNumberForm" (ngSubmit)="onPhoneNumberSaveClick()">
+                                        <div class="col-md-12 mb-md-0 p-md-4 card text-bg-light">
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1">Mobile</span>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Mobile Phone Number" aria-label="mobile"
+                                                    aria-describedby="basic-addon1" formControlName="mobile">
                                             </div>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="flex pt-4 justify-content-between">
-                                    <p-button label="Back" icon="pi pi-arrow-left" (onClick)="prevCallback.emit()" />
-                                    <p-button label="Next" icon="pi pi-arrow-right" iconPos="right"
-                                        (onClick)="nextCallback.emit()" />
-                                </div>
-                            </ng-template>
-                        </p-stepperPanel>
-                        <p-stepperPanel header="Email Addresses">
-                            <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
-                                <button class="bg-transparent border-none inline-flex flex-column gap-2"
-                                    (click)="onClick.emit()">
-                                    <span
-                                        class="border-round border-2 w-3rem h-3rem inline-flex align-items-center justify-content-center"
-                                        [ngClass]="{
-                                            'bg-danger border-primary': emailAddresses?.invalid,
-                                            'surface-border': !emailAddresses?.invalid
-                                        }">
-                                        <i class="pi pi-envelope"> Email Addresses</i>
-                                    </span>
-                                </button>
-                            </ng-template>
-                            <ng-template pTemplate="content" let-prevCallback="prevCallback" let-index="index">
-                                <div class="flex flex-column h-12rem">
-                                    <div
-                                        class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
-                                        <form [formGroup]="emailAddressesForm" (ngSubmit)="onEmailAddressesSaveClick()">
-                                            <div class="col-md-12 mb-md-0 p-md-4 card text-bg-light"
-                                                formArrayName="emailAddresses">
-                                                <div class="col-12">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        (click)="onAddEmailAddressClick()"
-                                                        [disabled]="emailAddresses?.invalid"><i
-                                                            class="bi bi-envelope-plus-fill"></i></button>
-                                                </div>
-                                                <div class="input-group mb-3"
-                                                    *ngFor="let emailAddress of emailAddressesControls; let i=index"
-                                                    [formGroupName]="i">
-                                                    <span class="input-group-text" id="basic-addon1">&commat;</span>
-                                                    <input type="text" class="form-control" placeholder="Email"
-                                                        aria-label="email" aria-describedby="basic-addon1"
-                                                        formControlName="email">
-                                                </div>
-                                                <div class="col-12">
-                                                    <button type="submit" class="btn btn-primary"
-                                                        [disabled]="emailAddresses?.invalid">Save</button>
-                                                </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1">Business</span>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Business Phone Number" aria-label="business"
+                                                    aria-describedby="basic-addon1" formControlName="business">
                                             </div>
-                                        </form>
-                                    </div>
+                                            <div class="input-group mb-3">
+                                                <span class="input-group-text" id="basic-addon1">Work</span>
+                                                <input type="text" class="form-control" placeholder="Work Phone Number"
+                                                    aria-label="work" aria-describedby="basic-addon1"
+                                                    formControlName="work">
+                                            </div>
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-primary"
+                                                    [disabled]="phoneNumberForm.invalid">Save</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="flex pt-4 justify-content-start">
-                                    <p-button label="Back" icon="pi pi-arrow-left" (onClick)="prevCallback.emit()" />
+                            </div>
+                            <div class="flex pt-4 justify-content-between">
+                                <p-button label="Back" icon="pi pi-arrow-left" (onClick)="prevCallback.emit()" />
+                                <p-button label="Next" icon="pi pi-arrow-right" iconPos="right"
+                                    (onClick)="nextCallback.emit()" />
+                            </div>
+                        </ng-template>
+                    </p-stepperPanel>
+                    <p-stepperPanel header="Email Addresses">
+                        <ng-template pTemplate="header" let-onClick="onClick" let-index="index">
+                            <button class="bg-transparent border-none inline-flex flex-column gap-2"
+                                (click)="onClick.emit()">
+                                <span
+                                    class="border-round border-2 w-3rem h-3rem inline-flex align-items-center justify-content-center"
+                                    [ngClass]="{
+                                        'bg-danger border-primary': emailAddresses?.invalid,
+                                        'surface-border': !emailAddresses?.invalid
+                                    }">
+                                    <i class="pi pi-envelope"> Email Addresses</i>
+                                </span>
+                            </button>
+                        </ng-template>
+                        <ng-template pTemplate="content" let-prevCallback="prevCallback" let-index="index">
+                            <div class="flex flex-column h-12rem">
+                                <div
+                                    class="border-2 border-dashed surface-border border-round surface-ground flex-auto flex justify-content-center align-items-center font-medium">
+                                    <form [formGroup]="emailAddressesForm" (ngSubmit)="onEmailAddressesSaveClick()">
+                                        <div class="col-md-12 mb-md-0 p-md-4 card text-bg-light"
+                                            formArrayName="emailAddresses">
+                                            <div class="col-12">
+                                                <button type="button" class="btn btn-secondary"
+                                                    (click)="onAddEmailAddressClick()"
+                                                    [disabled]="emailAddresses?.invalid"><i
+                                                        class="bi bi-envelope-plus-fill"></i></button>
+                                            </div>
+                                            <div class="input-group mb-3"
+                                                *ngFor="let emailAddress of emailAddressesControls; let i=index"
+                                                [formGroupName]="i">
+                                                <span class="input-group-text" id="basic-addon1">&commat;</span>
+                                                <input type="text" class="form-control" placeholder="Email"
+                                                    aria-label="email" aria-describedby="basic-addon1"
+                                                    formControlName="email">
+                                            </div>
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-primary"
+                                                    [disabled]="emailAddresses?.invalid">Save</button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                            </ng-template>
-                        </p-stepperPanel>
-                    </p-stepper>
-                </p>
-            </div>
+                            </div>
+                            <div class="flex pt-4 justify-content-start">
+                                <p-button label="Back" icon="pi pi-arrow-left" (onClick)="prevCallback.emit()" />
+                            </div>
+                        </ng-template>
+                    </p-stepperPanel>
+                </p-stepper>
+            </p>
         </div>
     </div>
 </div>

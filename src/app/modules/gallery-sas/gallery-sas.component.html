@@ -1,27 +1,33 @@
-<div class="services section" id="services">
-    <div class="container">
+<div class="gaming-library">
+    <div class="col-lg-12">
+        <div class="heading-section">
+            <h4><em>Gallery</em> SAS</h4>
+        </div>
         <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="section-heading">
-                    <h6>Gallery SAS</h6>
-                    <h2>Gallery SAS</h2>
-                </div>
-                <p-progressBar mode="indeterminate" [style]="{ height: '6px' }" *ngIf="loading" />
-                <!-- <img [src]="file.uriWithSasToken" class="img-thumbnail" *ngFor="let file of files"> -->
-                <div class="row">
-                    <div class="col-md-4" *ngFor="let file of files">
-                        <div class="thumbnail" *ngIf="!isVideoItem(file.contentType!)">
-                            <img [src]="file.uriWithSasToken" alt="Lights" style="width:100%">
-                            <div class="caption">
-                                <p>Lorem ipsum...</p>
-                            </div>
-                        </div>
+            <p-progressBar mode="indeterminate" [style]="{ height: '6px' }" *ngIf="loading" />
+            <!-- <img [src]="file.uriWithSasToken" class="img-thumbnail" *ngFor="let file of files"> -->
+            <div class="row">
+                <div class="col-lg-3 col-sm-6" *ngFor="let file of files">
+                    <div class="item" *ngIf="!isVideoItem(file.contentType!)">
+                        <img [src]="file.uriWithSasToken" alt="Lights" style="width:100%">
+                        <h4>Fortnite<br><span>Sandbox</span></h4>
+                        <ul>
+                            <li><i class="fa fa-star"></i> 4.8</li>
+                            <li><i class="fa fa-download"></i> 2.3M</li>
+                        </ul>
+                    </div>
+                    <div class="item" *ngIf="isVideoItem(file.contentType!)">
                         <div class="ratio ratio-4x3" *ngIf="isVideoItem(file.contentType!)">
                             <video controls>
                                 <source [src]="file.uriWithSasToken" [type]="file?.contentType">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
+                        <h4>Fortnite<br><span>Sandbox</span></h4>
+                        <ul>
+                            <li><i class="fa fa-star"></i> 4.8</li>
+                            <li><i class="fa fa-download"></i> 2.3M</li>
+                        </ul>
                     </div>
                 </div>
             </div>

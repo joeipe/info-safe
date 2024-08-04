@@ -1,76 +1,73 @@
-<div class="services section" id="services">
-    <div class="container">
+<div class="gaming-library">
+    <div class="col-lg-12">
+        <div class="heading-section">
+            <h4><em>Gallery</em> Library</h4>
+        </div>
         <div class="row">
-            <div class="col-lg-12 text-center">
-                <div class="section-heading">
-                    <h6>Gallery</h6>
-                    <h2>Gallery</h2>
+            <p-progressBar mode="indeterminate" [style]="{ height: '6px' }" *ngIf="loading" />
+            <div class="container">
+                <div class="row">
+                    <form class="row gy-2 gx-3 align-items-center" [formGroup]="form" (ngSubmit)="onSaveClick()">
+                        <div class="col-auto">
+                            <label class="visually-hidden" for="title">Title</label>
+                            <div class="input-group">
+                                <div class="input-group-text">Title</div>
+                                <input type="text" class="form-control"
+                                    [ngClass]="{ 'is-invalid': title?.invalid && title?.touched }" id="title"
+                                    placeholder="Title" formControlName="title">
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <label class="visually-hidden" for="description">Description</label>
+                            <div class="input-group">
+                                <div class="input-group-text">Description</div>
+                                <input type="text" class="form-control"
+                                    [ngClass]="{ 'is-invalid': description?.invalid && description?.touched }"
+                                    id="description" placeholder="Description" formControlName="description">
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <input class="form-control" type="file" accept=".jpg,.png,.mov"
+                                [ngClass]="{ 'is-invalid': newFile?.invalid && newFile?.touched }"
+                                (change)="onFileSelected($event)" formControlName="newFile">
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
+                        </div>
+                    </form>
                 </div>
-                <p-progressBar mode="indeterminate" [style]="{ height: '6px' }" *ngIf="loading" />
-                <div class="container">
-                    <div class="row">
-                        <form class="row gy-2 gx-3 align-items-center" [formGroup]="form" (ngSubmit)="onSaveClick()">
-                            <div class="col-auto">
-                                <label class="visually-hidden" for="title">Title</label>
-                                <div class="input-group">
-                                    <div class="input-group-text">Title</div>
-                                    <input type="text" class="form-control"
-                                        [ngClass]="{ 'is-invalid': title?.invalid && title?.touched }" id="title"
-                                        placeholder="Title" formControlName="title">
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <label class="visually-hidden" for="description">Description</label>
-                                <div class="input-group">
-                                    <div class="input-group-text">Description</div>
-                                    <input type="text" class="form-control"
-                                        [ngClass]="{ 'is-invalid': description?.invalid && description?.touched }"
-                                        id="description" placeholder="Description" formControlName="description">
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <input class="form-control" type="file" accept=".jpg,.png,.mov"
-                                    [ngClass]="{ 'is-invalid': newFile?.invalid && newFile?.touched }"
-                                    (change)="onFileSelected($event)" formControlName="newFile">
-                            </div>
-                            <div class="col-auto">
-                                <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="row">
-                        &nbsp;
-                    </div>
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="list-group" *ngFor="let file of files">
-                                <button type="button" class="list-group-item list-group-item-action"
-                                    [ngClass]="{'list-group-item-primary': isVideoItem(file.contentType!), 'list-group-item-warning': !isVideoItem(file.contentType!)}"
-                                    (click)="onImageClick(file.name!)">
-                                    Name: {{ file.name | slice:0:40}}{{ file.name?.length! > 40 ? '...' : '' }} <br>
-                                    Title: {{ file.metaData?.title }} <br>
-                                    Description: {{ file.metaData?.description }}
-                                    <!-- file.uri -->
-                                </button>
-                            </div>
+                <div class="row">
+                    &nbsp;
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="list-group" *ngFor="let file of files">
+                            <button type="button" class="list-group-item list-group-item-action"
+                                [ngClass]="{'list-group-item-primary': isVideoItem(file.contentType!), 'list-group-item-warning': !isVideoItem(file.contentType!)}"
+                                (click)="onImageClick(file.name!)">
+                                Name: {{ file.name | slice:0:40}}{{ file.name?.length! > 40 ? '...' : '' }} <br>
+                                Title: {{ file.metaData?.title }} <br>
+                                Description: {{ file.metaData?.description }}
+                                <!-- file.uri -->
+                            </button>
                         </div>
-                        <div class="col-8">
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                                <button class="btn btn-primary me-md-2" type="button"
-                                    (click)="onDeleteClick(file?.name!)">Delete</button>
-                            </div>
-                            <figure class="figure" *ngIf="!isVideo">
-                                <img [src]='media' />
-                                <figcaption class="figure-caption text-end">{{ file?.name }}.</figcaption>
-                            </figure>
-                            <figure class="figure" *ngIf="isVideo">
-                                <video controls>
-                                    <source [src]='media' [type]="file?.contentType">
-                                    Your browser does not support the video tag.
-                                </video>
-                                <figcaption class="figure-caption text-end">{{ file?.name }}.</figcaption>
-                            </figure>
+                    </div>
+                    <div class="col-8">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                            <button class="btn btn-primary me-md-2" type="button"
+                                (click)="onDeleteClick(file?.name!)">Delete</button>
                         </div>
+                        <figure class="figure" *ngIf="!isVideo">
+                            <img [src]='media' />
+                            <figcaption class="figure-caption text-end">{{ file?.name }}.</figcaption>
+                        </figure>
+                        <figure class="figure" *ngIf="isVideo">
+                            <video controls>
+                                <source [src]='media' [type]="file?.contentType">
+                                Your browser does not support the video tag.
+                            </video>
+                            <figcaption class="figure-caption text-end">{{ file?.name }}.</figcaption>
+                        </figure>
                     </div>
                 </div>
             </div>
