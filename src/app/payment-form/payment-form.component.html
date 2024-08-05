@@ -23,7 +23,7 @@
                     <ngx-stripe-payment [clientSecret]="clientSecret">
                     </ngx-stripe-payment>
                 </ng-container>
-                <button type="button" class="btn btn-primary"
+                <button type="button" class="btn btn-infosafe"
                     [disabled]="paying || payed || !elementsOptions.clientSecret" (click)="pay()">PAY</button>
             </div>
         </div>
