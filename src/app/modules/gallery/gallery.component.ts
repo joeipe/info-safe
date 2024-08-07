@@ -30,15 +30,12 @@ export class GalleryComponent implements OnInit {
       this.blobStorageApiSvc.listFiles()
     ];
 
-    this.loading = true;
     forkJoin(sources).subscribe(responseList => {
       this.files = responseList[0];
 
       this.onImageClick(this.files[0]?.name!);
 
       this.initForm();
-
-      this.loading = false;
     });
   }
 
