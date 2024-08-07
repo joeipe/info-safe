@@ -16,7 +16,8 @@ export class GalleryComponent implements OnInit {
   media: any;
   newUpload: File;
   loading: boolean = false;
-  form!: FormGroup;
+  formNew!: FormGroup;
+  formUpdate!: FormGroup;
 
   constructor(
     private blobStorageApiSvc: BlobStorageApiService,
@@ -42,10 +43,15 @@ export class GalleryComponent implements OnInit {
   }
 
   initForm(): void {
-    this.form = this.formBuilder.nonNullable.group({
-      title: [this.files[0]?.metaData?.title, [Validators.required]],
-      description: [this.files[0]?.metaData?.description, [Validators.required]],
+    this.formNew = this.formBuilder.nonNullable.group({
+      title: [null, [Validators.required]],
+      description: [null, [Validators.required]],
       newFile: [null, [Validators.required]]
+    });
+
+    this.formUpdate = this.formBuilder.nonNullable.group({
+      title: [this.files[0]?.metaData?.title, [Validators.required]],
+      description: [this.files[0]?.metaData?.description, [Validators.required]]
     });
   }
 
@@ -54,6 +60,8 @@ export class GalleryComponent implements OnInit {
     this.blobStorageApiSvc.downloadFile(fileName).subscribe(result => {
       this.file = result;
       this.media = this.sanitizer.bypassSecurityTrustUrl(this.file.content!);
+      this.formUpdate.controls['title'].setValue(this.file.metaData?.title);
+      this.formUpdate.controls['description'].setValue(this.file.metaData?.description);
       this.loading = false;
     });
   }
@@ -61,6 +69,14 @@ export class GalleryComponent implements OnInit {
   onDeleteClick(fileName: string) {
     this.loading = true;
     this.blobStorageApiSvc.deleteFile(fileName).subscribe(result => {
+      this.ngOnInit();
+      this.loading = false;
+    });
+  }
+
+  onArchiveClick(fileName: string) {
+    this.loading = true;
+    this.blobStorageApiSvc.archiveFile(fileName).subscribe(result => {
       this.ngOnInit();
       this.loading = false;
     });
@@ -77,8 +93,8 @@ export class GalleryComponent implements OnInit {
     const blobRequest: IBlobRequest = {
       fileName: file.name,
       metaData: {
-        title: this.form.get('title')?.value,
-        description: this.form.get('description')?.value
+        title: this.formNew.get('title')?.value,
+        description: this.formNew.get('description')?.value
       }
     }
 
@@ -95,6 +111,23 @@ export class GalleryComponent implements OnInit {
     }
   }
 
+  onUpdateClick() {
+    this.loading = true;
+
+    const blobRequest: IBlobRequest = {
+      fileName: this.file?.name!,
+      metaData: {
+        title: this.formUpdate.get('title')?.value,
+        description: this.formUpdate.get('description')?.value
+      }
+    }
+
+    this.blobStorageApiSvc.updateMetadata(blobRequest).subscribe(() => {
+      this.ngOnInit();
+      this.loading = false;
+    });
+  }
+
   isVideoItem(contentType: string): boolean {
     return contentType == 'video/mp4';
   }
@@ -104,14 +137,22 @@ export class GalleryComponent implements OnInit {
   }
 
   get title() {
-    return this.form.get('title');
+    return this.formNew.get('title');
   }
 
   get description() {
-    return this.form.get('description');
+    return this.formNew.get('description');
   }
 
   get newFile() {
-    return this.form.get('newFile');
+    return this.formNew.get('newFile');
+  }
+
+  get titleUpdate() {
+    return this.formUpdate.get('title');
+  }
+
+  get descriptionUpdate() {
+    return this.formUpdate.get('description');
   }
 }

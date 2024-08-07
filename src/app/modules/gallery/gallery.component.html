@@ -6,7 +6,7 @@
         <p-progressBar mode="indeterminate" [style]="{ height: '6px' }" *ngIf="loading" />
         <div class="feature-banner header-text">
             <div class="row">
-                <form class="row gy-2 gx-3 align-items-center" [formGroup]="form" (ngSubmit)="onSaveClick()">
+                <form class="row gy-2 gx-3 align-items-center" [formGroup]="formNew" (ngSubmit)="onSaveClick()">
                     <div class="col-auto">
                         <label class="visually-hidden" for="title">Title</label>
                         <div class="input-group">
@@ -31,7 +31,7 @@
                             (change)="onFileSelected($event)" formControlName="newFile">
                     </div>
                     <div class="main-button">
-                        <button type="submit" class="btn btn-infosafe" [disabled]="form.invalid">Submit</button>
+                        <button type="submit" class="btn btn-infosafe" [disabled]="formNew.invalid">Submit</button>
                     </div>
                 </form>
             </div>
@@ -43,23 +43,50 @@
                 <h4><em>Selected</em> Media File</h4>
             </div>
             <div>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                    <button class="btn btn-infosafe me-md-2" type="button"
-                        (click)="onDeleteClick(file?.name!)">Delete</button>
-                </div>
-                <figure class="figure" *ngIf="!isVideo">
-                    <img [src]='media' />
-                    <figcaption class="figure-caption text-end">{{ file?.name }}.</figcaption>
-                </figure>
-                <figure class="figure" *ngIf="isVideo">
-                    <div class="ratio ratio-4x3">
-                        <video controls>
-                            <source [src]='media' [type]="file?.contentType">
-                            Your browser does not support the video tag.
-                        </video>
+                <form class="row gy-2 gx-3 align-items-center" [formGroup]="formUpdate" (ngSubmit)="onUpdateClick()">
+                    <div class="col-auto">
+                        <label class="visually-hidden" for="title">Title</label>
+                        <div class="input-group">
+                            <div class="input-group-text">Title</div>
+                            <input type="text" class="form-control"
+                                [ngClass]="{ 'is-invalid': titleUpdate?.invalid && titleUpdate?.touched }" id="title"
+                                placeholder="Title" formControlName="title">
+                        </div>
                     </div>
-                    <figcaption class="figure-caption text-end">{{ file?.name }}.</figcaption>
-                </figure>
+                    <div class="col-auto">
+                        <label class="visually-hidden" for="description">Description</label>
+                        <div class="input-group">
+                            <div class="input-group-text">Description</div>
+                            <input type="text" class="form-control"
+                                [ngClass]="{ 'is-invalid': descriptionUpdate?.invalid && descriptionUpdate?.touched }"
+                                id="description" placeholder="Description" formControlName="description">
+                        </div>
+                    </div>
+                    <div class="main-button">
+                        <button type="submit" class="btn btn-infosafe" [disabled]="formUpdate.invalid">Update</button>
+                        <button class="btn btn-infosafe" type="button"
+                            (click)="onDeleteClick(file?.name!)">Delete</button>
+                        <button class="btn btn-infosafe" type="button"
+                            (click)="onArchiveClick(file?.name!)">Archive</button>
+                    </div>
+                </form>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div *ngIf="!isVideo">
+                            <img [src]='media' />
+                            <h4>{{ file?.name }}</h4>
+                        </div>
+                        <div *ngIf="isVideo">
+                            <div class="ratio ratio-4x3">
+                                <video controls>
+                                    <source [src]='media' [type]="file?.contentType">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                            <h4>{{ file?.name }}</h4>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

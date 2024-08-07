@@ -60,4 +60,11 @@ export class BlobStorageApiService {
     blobRequest.fileName = encodeURIComponent(blobRequest.fileName)
     return this._http.post(`${this.apiUrl}/UpdateMetadata`, blobRequest);
   }
+
+  archiveFile(fileName: string): Observable<IBlobResponse> {
+    let blobRequest: IBlobRequest = {
+      fileName: encodeURIComponent(fileName)
+    }
+    return this._http.post<IBlobResponse>(`${this.apiUrl}/ArchiveFile`, blobRequest);
+  }
 }
